@@ -44,7 +44,7 @@ module.exports = {
         if (json.prefix_color) create_json.prefix_color = json.prefix_color;
         if (json.default_color) create_json.default_color = json.default_color;
         if (json.error) create_json.error = json.error;
-        if (json.warning) create_json.error = json.warning;
+        if (json.warning) create_json.warning = json.warning;
 
         config = create_json;
         
