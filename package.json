@@ -1,6 +1,6 @@
 {
   "name": "gulog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple console log package.",
   "main": "src/index.js",
   "bin": "src/index.js",
@@ -15,8 +15,7 @@
   "author": "Gustavo Rocha",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^4.1.1",
-    "fs": "0.0.1-security"
+    "chalk": "^4.1.1"
   },
   "repository": {
     "type": "git",
