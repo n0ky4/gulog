@@ -1,0 +1,28 @@
+{
+  "name": "gulog",
+  "version": "1.0.0",
+  "description": "A simple console log package.",
+  "main": "src/index.js",
+  "bin": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node src/test.js"
+  },
+  "keywords": [
+    "log",
+    "logger"
+  ],
+  "author": "Gustavo Rocha",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "fs": "0.0.1-security"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umgustavo/gulog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/umgustavo/gulog/issues"
+  }
+}
