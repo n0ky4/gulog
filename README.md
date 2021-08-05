@@ -19,16 +19,23 @@ const log = require('gulog');
 log.setup({
     prefix: "[My Application]",
     prefix_color: "magenta",
-    default_color: "blue",
+    info: {
+        prefix: "[INFO]",
+        prefix_color: "cyan",
+        text_color: "blue",
+        show_prefix: false
+    },
     error: {
         prefix: "[ERROR MESSAGE WOW]",
         prefix_color: "red",
         text_color: "red",
+        show_prefix: true
     },
     warning: {
         prefix: "[WARNING MESSAGE WOW]",
         prefix_color: "yellow",
         text_color: "white",
+        show_prefix: true
     }
 });
 
