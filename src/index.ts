@@ -1,79 +1,91 @@
 #!/usr/bin/env node
-const chalk = require('chalk');
-const merge = require('deepmerge');
+import chalk from 'chalk';
+import merge from 'deepmerge';
 
-export interface Info {
+interface gulog {
+type fieldConfig = {
+    usePrefix?: boolean;
     prefix?: string;
-    prefix_color?: string;
-    text_color?: string;
-    show_prefix?: boolean;
-}
-export interface Error {
-    prefix?: string;
-    prefix_color?: string;
-    text_color?: string;
-    show_prefix?: boolean;
-}
-export interface Warning {
-    prefix?: string;
-    prefix_color?: string;
-    text_color?: string;
-    show_prefix?: boolean;
-}
-export interface gulogConfig {
-    prefix?: string;
-    prefix_color?: string;
-    info?: Info;
-    error?: Error;
-    warning?: Warning;
-}
-
-let cfg: gulogConfig = {
-    prefix: '[gulog]',
-    prefix_color: 'magenta',
-    info: {
-        prefix: '[INFO]',
-        prefix_color: 'cyan',
-        text_color: 'white',
-        show_prefix: true
-    },
-    error: {
-        prefix: '[ERROR]',
-        prefix_color: 'red',
-        text_color: 'red',
-        show_prefix: true
-    },
-    warning: {
-        prefix: '[WARN]',
-        prefix_color: 'yellow',
-        text_color: 'yellow',
-        show_prefix: true
-    }
+    prefixColor?: typeof chalk.ForegroundColor;
+    messageColor?: typeof chalk.ForegroundColor;
 };
 
-module.exports = {
-    setup: (config: gulogConfig): void => {
-        cfg = merge(cfg, config);
+type availableTypes = 'info' | 'error' | 'warning' | 'success';
+
+type gulogConfig = {
+    usePrefix?: boolean;
+    prefix?: string;
+    prefixColor?: typeof chalk.ForegroundColor;
+    info?: fieldConfig;
+    error?: fieldConfig;
+    warning?: fieldConfig;
+    success?: fieldConfig;
+};
+
+let cfg: gulogConfig = {
+    usePrefix: true,
+    prefix: '[gulog]',
+    prefixColor: 'magenta',
+    info: {
+        usePrefix: true,
+        prefix: '[info]',
+        prefixColor: 'cyan',
+        messageColor: 'white',
     },
-    info: (message: string): void => {
-        if (cfg.info?.show_prefix === true) {
-            console.log(chalk`{${cfg.prefix_color} ${cfg.prefix}} {${cfg.info?.prefix_color} ${cfg.info?.prefix}} {${cfg.info?.text_color} ${message}}`);
-        } else {
-            console.log(chalk`{${cfg.prefix_color} ${cfg.prefix}} {${cfg.info?.text_color} ${message}}`);
-        }
+    error: {
+        usePrefix: true,
+        prefix: '[error]',
+        prefixColor: 'redBright',
+        messageColor: 'red',
     },
-    error: (message: string): void => {
-        if (cfg.error?.show_prefix === true) {
-            console.log(chalk`{${cfg.prefix_color} ${cfg.prefix}} {${cfg.error?.prefix_color} ${cfg.error?.prefix}} {${cfg.error?.text_color} ${message}}`);
-        } else {
-            console.log(chalk`{${cfg.prefix_color} ${cfg.prefix}} {${cfg.error?.text_color} ${message}}`);
-        }
+    warning: {
+        usePrefix: true,
+        prefix: '[warn]',
+        prefixColor: 'yellowBright',
+        messageColor: 'yellow',
     },
-    warn: (message: string): void => {
-        if (cfg.warning?.show_prefix === true) {
-            console.log(chalk`{${cfg.prefix_color} ${cfg.prefix}} {${cfg.warning?.prefix_color} ${cfg.warning?.prefix}} {${cfg.warning?.text_color} ${message}}`);
-        } else {
-            console.log(chalk`{${cfg.prefix_color} ${cfg.prefix}} {${cfg.warning?.text_color} ${message}}`);
-        }
-    }
+    success: {
+        usePrefix: true,
+        prefix: '[success]',
+        prefixColor: 'green',
+        messageColor: 'white',
+    },
+};}
+
+
+function __base__(message: string, type: availableTypes): void {
+    const _prefix =
+        cfg.usePrefix === true
+            ? chalk`{${cfg.prefixColor} ${cfg.prefix}} `
+            : '';
+    const _typePrefix =
+        cfg[type]?.usePrefix === true
+            ? chalk`{${cfg[type]?.prefixColor} ${cfg[type]?.prefix}} `
+            : '';
+    const _msg = cfg[type]?.prefixColor
+        ? chalk`{${cfg[type]?.messageColor} ${message}}`
+        : chalk`{reset ${message}}`;
+    console.log(chalk`${_prefix}${_typePrefix}${_msg}`);
 }
+
+function setup(config: gulogConfig): void {
+    cfg = merge(cfg, config);
+}
+
+function info(message: string): void {
+    __base__(message, 'info');
+}
+
+function warning(message: string): void {
+    __base__(message, 'warning');
+}
+
+function error(message: string): void {
+    __base__(message, 'error');
+}
+
+function success(message: string): void {
+    __base__(message, 'success');
+}
+
+export { setup, info, warning, error, success };

@@ -1,32 +1,36 @@
 {
-  "name": "gulog",
-  "version": "1.1.0",
-  "description": "A simple console log package.",
-  "main": "lib/index.js",
-  "bin": "lib/index.js",
-  "types": "lib",
-  "scripts": {
-    "build": "tsc -p ."
-  },
-  "keywords": [
-    "log",
-    "logger"
-  ],
-  "author": "Gustavo Rocha",
-  "license": "MIT",
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "deepmerge": "^4.2.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/umgustavo/gulog.git"
-  },
-  "bugs": {
-    "url": "https://github.com/umgustavo/gulog/issues"
-  },
-  "devDependencies": {
-    "@types/node": "^16.4.10",
-    "typescript": "^4.3.5"
-  }
+    "name": "gulog",
+    "version": "2.0.0",
+    "description": "A simple console logger.",
+    "main": "lib/index.js",
+    "bin": "lib/index.js",
+    "types": "lib",
+    "scripts": {
+        "build": "tsc -p .",
+        "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\""
+    },
+    "keywords": [
+        "log",
+        "logger",
+        "colorful",
+        "chalk"
+    ],
+    "author": "Gustavo Rocha",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "deepmerge": "^4.2.2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/umgustavo/gulog.git"
+    },
+    "bugs": {
+        "url": "https://github.com/umgustavo/gulog/issues"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.2",
+        "prettier": "^2.5.1",
+        "typescript": "^4.5.4"
+    }
 }

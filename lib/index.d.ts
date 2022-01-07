@@ -1,27 +1,24 @@
 #!/usr/bin/env node
-export interface Info {
+import chalk from 'chalk';
+declare type fieldConfig = {
+    usePrefix?: boolean;
     prefix?: string;
-    prefix_color?: string;
-    text_color?: string;
-    show_prefix?: boolean;
-}
-export interface Error {
+    prefixColor?: typeof chalk.ForegroundColor;
+    messageColor?: typeof chalk.ForegroundColor;
+};
+declare type gulogConfig = {
+    usePrefix?: boolean;
     prefix?: string;
-    prefix_color?: string;
-    text_color?: string;
-    show_prefix?: boolean;
-}
-export interface Warning {
-    prefix?: string;
-    prefix_color?: string;
-    text_color?: string;
-    show_prefix?: boolean;
-}
-export interface gulogConfig {
-    prefix?: string;
-    prefix_color?: string;
-    info?: Info;
-    error?: Error;
-    warning?: Warning;
-}
+    prefixColor?: typeof chalk.ForegroundColor;
+    info?: fieldConfig;
+    error?: fieldConfig;
+    warning?: fieldConfig;
+    success?: fieldConfig;
+};
+declare function setup(config: gulogConfig): void;
+declare function info(message: string): void;
+declare function warning(message: string): void;
+declare function error(message: string): void;
+declare function success(message: string): void;
+export { setup, info, warning, error, success };
 //# sourceMappingURL=index.d.ts.map

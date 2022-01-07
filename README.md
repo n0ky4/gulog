@@ -4,7 +4,7 @@
 
 > A simple console logger.
 
-## Install
+## Installation
 
 ```console
 $ npm install gulog
@@ -17,31 +17,39 @@ const log = require('gulog');
 
 // All possible options
 log.setup({
-    prefix: "[My Application]",
-    prefix_color: "magenta",
+    usePrefix: true,
+    prefix: '[gulog]',
+    prefixColor: 'magenta',
     info: {
-        prefix: "[INFO]",
-        prefix_color: "cyan",
-        text_color: "blue",
-        show_prefix: false
+        usePrefix: true,
+        prefix: '[info]',
+        prefixColor: 'cyan',
+        messageColor: 'white',
     },
     error: {
-        prefix: "[ERROR MESSAGE WOW]",
-        prefix_color: "red",
-        text_color: "red",
-        show_prefix: true
+        usePrefix: true,
+        prefix: '[error]',
+        prefixColor: 'redBright',
+        messageColor: 'red',
     },
     warning: {
-        prefix: "[WARNING MESSAGE WOW]",
-        prefix_color: "yellow",
-        text_color: "white",
-        show_prefix: true
-    }
+        usePrefix: true,
+        prefix: '[warn]',
+        prefixColor: 'yellowBright',
+        messageColor: 'yellow',
+    },
+    success: {
+        usePrefix: true,
+        prefix: '[success]',
+        prefixColor: 'green',
+        messageColor: 'white',
+    },
 });
 
-log.info("Hey!");
-log.error("This is a error :o");
-log.warn("This is a warning :o");
+log.info('This is an information :)');
+log.success('success, yeah!!!');
+log.warning('Whoops... A warning.');
+log.error('Oh no! An error 😨 😨');
 ```
 
 ### Result
