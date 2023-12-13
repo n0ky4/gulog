@@ -15,7 +15,7 @@
         "colorful",
         "chalk"
     ],
-    "author": "Gustavo Rocha",
+    "author": "guko",
     "license": "MIT",
     "dependencies": {
         "chalk": "^4.1.2",
@@ -23,10 +23,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/umgustavo/gulog.git"
+        "url": "git+https://github.com/gukodev/gulog.git"
     },
     "bugs": {
-        "url": "https://github.com/umgustavo/gulog/issues"
+        "url": "https://github.com/gukodev/gulog/issues"
     },
     "devDependencies": {
         "@types/node": "^17.0.2",
